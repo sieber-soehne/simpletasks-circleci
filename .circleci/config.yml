@@ -41,7 +41,7 @@ jobs:
       # Deploy to Galaxy
       - run:
           name: Deploy to Galaxy
-          command: meteor deploy weba.circleci.sieber.meteorapp.com --settings settings.json
+          command: meteor deploy weba.circleci.sieber.meteorapp.com --free --settings settings.json
           no_output_timeout: "20m"
 
 workflows:
