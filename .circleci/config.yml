@@ -1,0 +1,51 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.9-browsers  # Verwende das Node.js 20.9 Image mit Browser-Unterstützung
+    steps:
+      - checkout
+      
+      # Install required libraries
+      - run:
+          name: Install Required Libraries
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y openssl libssl-dev
+
+      # Cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      # Install dependencies
+      - run:
+          name: Install Dependencies
+          command: |
+            curl https://install.meteor.com/ | sh
+            meteor npm install
+
+      # Save dependencies to cache
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # Run tests
+      - run:
+          name: Run Tests
+          command: meteor npm test
+
+      # Deploy to Galaxy
+      - run:
+          name: Deploy to Galaxy
+          command: meteor deploy weba.circleci.sieber.meteorapp.com --settings settings.json
+          no_output_timeout: "20m"
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
