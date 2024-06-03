@@ -7,12 +7,6 @@ Deployed to Galaxy: https://simpletasks.meteorapp.com/
 ## What and why this stack?
 The main goal is to make development as quick and efficient as possible. To achieve this, I have selected these technologies:
 
--   [Meteor ](https://meteor.com/)- A full-stack framework focused on productivity that uses RPCs and Sockets for reactivity.
--   [React ](https://reactjs.org/)- A minimal UI library for building on the web.
--   [Chakra UI ](https://chakra-ui.com/)- A React library focused on simplicity and productivity.
--   [React Hook Form ](https://react-hook-form.com/)- Performant, flexible, and extensible forms with easy-to-use validation.
--   [MongoDB ](https://www.mongodb.com/)- A NoSQL database that is really powerful for prototyping and creating ready-to-use apps out of the box.
--   [Meteor Cloud ](https://meteor.com/cloud)-  A cloud provider that makes deploying a server with a database included painless.
 
 ### Features:
 - Sign In / Sign Up
